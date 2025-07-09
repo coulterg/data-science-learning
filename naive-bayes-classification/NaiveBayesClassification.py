@@ -65,13 +65,21 @@ total_words_per_class = defaultdict(int)
 
 for label, word_counts in word_counts_per_class.items():
     total_words_per_class[label] = sum(word_counts.values())
-    
-# print("Total words per class:", total_words_per_class)
+
+# Need for Laplace smoothing
+vocab = set(word for email in tokenized_emails for word in email)
+vocab_size = len(vocab)
 
 likelihoods = defaultdict(lambda: defaultdict(float))
+
+# Calculated using Laplace smoothing to ensure unseen words don't immediately zero out score
+
 for label, word_counts in word_counts_per_class.items():
-    for word, count in word_counts.items():
-        likelihoods[label][word] = count / total_words_per_class[label]
+    total_words = total_words_per_class[label]
+
+    for word in vocab:
+        count = word_counts[word] # 0 if unseen
+        likelihoods[label][word] = (count+1) / (total_words + vocab_size)
 
 # print("Likelihoods:", likelihoods)
 
@@ -103,10 +111,10 @@ def classify(email):
     scores = score(email)
 
     print(scores)
-    print(max(scores))
+    best_label = max(scores, key=scores.get)
 
-    return max(scores)
+    return best_label
 
 
-print('Email: ' + classify('to'))
+print('Email: ' + classify('Attached is the meeting.'))
 
