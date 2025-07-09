@@ -1,0 +1,13 @@
+text,label
+"Win a free iPhone now!","spam"
+"Limited offer, click here to claim your prize","spam"
+"You have won a $1000 gift card","spam"
+"Earn money fast, no experience needed","spam"
+"Congratulations! You’re selected for a free vacation","spam"
+"Click to get your free rewards now","spam"
+"Meeting rescheduled to 3 PM today","not_spam"
+"Let’s grab lunch tomorrow","not_spam"
+"Attached is the updated report","not_spam"
+"Don’t forget your dentist appointment","not_spam"
+"Are you coming to the team dinner?","not_spam"
+"Here are the slides from today’s call","not_spam"
